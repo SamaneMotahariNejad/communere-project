@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">
+    Please add your locations and then click submit
+  </h4>
+</div>
+<div class="modal-body p-2">
+
+  <div class="position-relative h-100">
+    <div class="map-container">
+      <div class="map-frame">
+        <div id="map2"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="float-end sb_locationMap" (click)="submitMap()">
+    <button [ngClass]="{'disabled': markers.length <= 0}" [disabled]="markers.length <= 0" class="align-items-center border-0 d-flex fs-13 text-white">
+      Submit Location
+    </button>
+  </div>
+</div>

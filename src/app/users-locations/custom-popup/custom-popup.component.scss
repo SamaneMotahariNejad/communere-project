@@ -1,0 +1,78 @@
+::ng-deep {
+    .leaflet-popup-content-wrapper {
+        padding: 0;
+
+        .leaflet-popup-content {
+            margin: 0 !important;
+
+            .popup_wrapper {
+                .popup_title {
+                    background: #92c755;
+                    color: #fff;
+                    border-radius: 5px 5px 0 0;
+                    padding: 5px 20px;
+                    white-space: nowrap;
+
+                    input {
+                        border: 0;
+                        font-weight: 500;
+                        border-radius: 5px;
+
+                        &:focus {
+                            border: 0 !important;
+                        }
+
+                        &:focus-visible {
+                            outline: 0 !important;
+                        }
+
+                        &:not(.isEdit) {
+                            background: transparent;
+                        }
+
+                        &.isEdit {
+                            color: #434343 !important;
+                        }
+                    }
+                }
+
+                .popup_content {
+                    padding: 10px 5px;
+
+                    input {
+                        border: 0;
+                        font-weight: 500;
+                        border-radius: 5px;
+                        min-height: 50px;
+
+                        &:focus {
+                            border: 0 !important;
+                        }
+
+                        &:focus-visible {
+                            outline: 0 !important;
+                        }
+
+                        &.isEdit {
+                            border: solid 1px #98c1d9 !important;
+                        }
+                    }
+                }
+
+                .popup_btn {
+                    padding: 0 5px 5px;
+
+                    .close {
+                        background-color: #FBC800;
+                        height: 28px;
+                    }
+
+                    .edit {
+                        background-color: #98c1d9;
+                        height: 28px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+<div class="popup_wrapper">
+    <div class="popup_title">
+        <input (keyup.enter)="sendData()" class="text-white text-center" [readOnly]="!isEdit" [ngClass]="{'isEdit': isEdit}" [(ngModel)]="data.name" />
+    </div>
+
+    <div class="popup_content">
+        <input (keyup.enter)="sendData()" class="w-100" [readOnly]="!isEdit" [ngClass]="{'isEdit': isEdit}" [(ngModel)]="data.description" />
+    </div>
+
+    <div class="popup_btn d-flex">
+        <button
+            class="close align-items-center border-0 d-flex flex-grow-1 fw-semibold justify-content-center me-1 rounded-1 text-white w-50"
+            (click)="close()">
+            Close
+        </button>
+
+        <button *ngIf="!isEdit"
+            class="edit align-items-center border-0 d-flex flex-grow-1 fw-semibold justify-content-center ms-1 rounded-1 text-white w-50"
+            (click)="edit()">
+            Edit
+        </button>
+
+        <button *ngIf="isEdit"
+            class="edit align-items-center border-0 d-flex flex-grow-1 fw-semibold justify-content-center ms-1 rounded-1 text-white w-50"
+            (click)="sendData()">
+            Confirm
+        </button>
+    </div>
+</div>

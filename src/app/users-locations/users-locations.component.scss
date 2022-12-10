@@ -1,0 +1,228 @@
+.users_wrapper {
+  background: linear-gradient(90deg, #232b7a 44.72%, #046fed 110.04%);
+  height: 100vh;
+
+  .users_content {
+
+    .table-wrapper {
+      min-height: calc(100vh - 142px);
+      border: 1px solid #DFECFF !important;
+      border-radius: 5px;
+
+      .image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #DFECFF;
+        border: solid 1px #046fed;
+
+        img {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
+      }
+
+      .table {
+        &.table_height {
+          min-height: calc(100vh - 142px);
+        }
+
+        > :not(:first-child) {
+          border-top: 0;
+        }
+
+        th,
+        td {
+          padding: 0.75rem !important;
+          vertical-align: middle;
+          width: 20%;
+        }
+
+        thead th {
+          border-bottom: 0;
+          border-top: 0 !important;
+          padding: 5px 0.75rem !important;
+          background: #DFECFF;
+          border-right: solid 1px #fff;
+
+          &:first-child {
+            border-radius: 5px 0 0 0;
+            width: 15%;
+          }
+
+          &:last-child {
+            border-radius: 0 5px 0 0;
+            border-right: 0 !important;
+            width: 45%;
+          }
+        }
+
+        tbody {
+          tr {
+            border-color: #DFECFF;
+
+            td {
+              font-size: 13px;
+
+              &.parent {
+                padding: 0 !important;
+                vertical-align: top !important;
+              }
+
+              &.no-content {
+                color: #ee6c4d !important;
+                font-weight: 500;
+                font-size: 14px;
+              }
+            }
+
+            td:not(.child):first-child {
+              border-bottom-left-radius: 5px;
+              width: 15%;
+            }
+
+            td:not(.child):last-child {
+              border-bottom-right-radius: 5px;
+              width: 45%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .disabled {
+    opacity: 0.7;
+  }
+
+  .userModal {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    .modal-content {
+      min-height: calc(100vh - 200px);
+      border: 0;
+
+      .userloc_btn {
+        margin-top: 15px;
+
+        .save {
+          background-color: #98c1d9;
+          height: 35px;
+          width: 120px;
+        }
+
+        .cancel {
+          background-color: #67748e;
+          height: 35px;
+          width: 120px;
+        }
+      }
+
+      .modal-header {
+        background-color: #046FED;
+      }
+
+      label {
+        width: 60%;
+        color: #242C7B;
+        font-weight: 500;
+        font-size: 15px;
+      }
+
+      .uploader {
+        min-height: 120px;
+        background-color: #DFECFF;
+
+        .uploader_title {
+          background: #046FED;
+          width: 100%;
+          border-radius: 5px 5px 0 0;
+        }
+
+        #mediaFile {
+          right: 0;
+          left: 0;
+          opacity: 0;
+        }
+      }
+
+      #map {
+        min-height: 150px;
+
+        .leaflet-control-attribution.leaflet-control {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .mapModal {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 95%;
+    max-width: 95%;
+
+    .modal-content {
+      border: 0;
+
+      .modal-header {
+        background: rgba(#046FED, 0.2);
+
+        .modal-title {
+          color: #232b7a;
+          font-size: 15px;
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      .modal-body {
+        .sb_locationMap button {
+          margin: 10px 0;
+          height: 40px;
+          background: #046FED;
+          border-radius: 5px;
+          padding: 8px 20px;
+        }
+
+        .position-relative {
+          min-height: calc(100vh - 150px);
+        }
+
+        .map-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+
+          .map-frame {
+            height: 100%;
+
+            #map2 {
+              border-radius: 8px;
+              height: 100%;
+
+              .leaflet-control-attribution.leaflet-control {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+  }
+}

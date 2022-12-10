@@ -1,0 +1,166 @@
+<div class="users_wrapper p-4">
+  <div class="users_content bg-white rounded-2 h-100 shadow p-4">
+
+    <div class="w-100 d-flex justify-content-end">
+      <button type="button" class="btn btn-primary" (click)="openModal(template)">
+        Add New User Location
+      </button>
+    </div>
+
+    <div class="table-wrapper mt-3 shadow">
+      <table [ngClass]="{'table_height': userLocations.length <= 0}" class="table m-0 w-100 table-responsive">
+        <thead>
+          <tr class="shadow-sm">
+            <th>
+              #
+            </th>
+
+            <th>
+              Location Name
+            </th>
+
+            <th>
+              Location Type
+            </th>
+
+            <th>
+              Locations On Map
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <ng-container *ngIf="userLocations.length <= 0">
+            <tr>
+              <td colspan="4" class="w-100 text-center no-content">
+                No Data
+              </td>
+            </tr>
+          </ng-container>
+          <tr *ngFor="let item of userLocations; let index= index">
+            <td>
+              <div class="image position-relative">
+                <img *ngIf="item.user.logo" [src]="item.user.logo" />
+                <img *ngIf="!item.user.logo" [src]="" />
+              </div>
+            </td>
+
+            <td>
+              {{item.user.locationName}}
+            </td>
+
+            <td>
+              {{item.user.locationType}}
+            </td>
+
+            <td class="parent">
+              <table class="w-100">
+                <tr *ngFor="let user of item.user.locationMap">
+                  <td class="child">
+                    {{user.name}}
+                  </td>
+
+                  <td class="child">
+                    {{user.description}}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left text-white">Share Location</h4>
+  </div>
+  <div class="modal-body">
+
+    <form [formGroup]="userForm">
+      <div class="d-flex align-items-center mb-4">
+        <label class="d-flex fw-500 fw-semibold mb--13 text-2xl text-darkgray-color">
+          Location Name
+        </label>
+        <div class="mb--24 w-100 pl-3">
+          <input type="text" formControlName="locationName"
+            class="form-control text-base text-third-color hMin--38 round-25"
+            [ngClass]="{'is-invalid': userForm.get('locationName')?.errors?.invalid}" placeholder="Location Name">
+        </div>
+      </div>
+
+      <div class="d-flex mb-4">
+        <label class="d-flex fw-500 fw-semibold mb--13 text-2xl text-darkgray-color">
+          Location On Map
+        </label>
+        <div (click)="openMap(map)" class="mb--24 w-100 pl-3 position-relative">
+          <div class="map-container">
+            <div class="map-frame">
+              <div id="map"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center mb-4">
+        <label class="d-flex fw-500 fw-semibold mb--13 text-2xl text-darkgray-color">
+          Location Type
+        </label>
+        <div class="mb--24 w-100 pl-3">
+          <select type="text" formControlName="locationType"
+            class="form-control text-base text-third-color hMin--38 round-25 form-select"
+            [ngClass]="{'is-invalid': userForm.get('locationType')?.errors?.invalid}" placeholder="Location Type">
+            <option selected>
+              Business
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center">
+        <label class="d-flex fw-500 fw-semibold mb--13 text-2xl text-darkgray-color">
+          Logo
+        </label>
+        <div class="mb--24 w-100 pl-3">
+          <div class="uploader position-relative rounded-1">
+            <div class="uploader_title text-center text-white p-2" *ngIf="!imageUrl">
+              Upload
+            </div>
+            <div class="text-center mt-3" *ngIf="!imageUrl">
+              <img height="50" src="./assets/images/upload.png" />
+            </div>
+
+            <div class="text-center mt-3" *ngIf="imageUrl">
+              <img height="120" [src]="imageUrl" />
+            </div>
+
+            <input #fileInput formControlName="logo" class="pointer h-100 position-absolute round-100 top-0 w-100"
+              (change)="handleFileInput($any($event.target).files)" type="file" id="mediaFile" />
+          </div>
+        </div>
+      </div>
+
+      <div class="userloc_btn d-flex justify-content-end">
+        <button (click)="closeInfo()"
+          class="cancel align-items-center border-0 d-flex fw-semibold justify-content-center ms-1 rounded-1 text-white">
+          Cancel
+        </button>
+
+        <button [disabled]="userForm.invalid" [ngClass]="{'disabled': userForm.invalid}" (click)="saveInfo()"
+          class="save align-items-center border-0 d-flex fw-semibold justify-content-center ms-1 rounded-1 text-white">
+          Save
+        </button>
+      </div>
+    </form>
+
+  </div>
+</ng-template>
+
+
+<ng-template #map>
+  <app-map [map2]="map2" [mapData]='mapData' (close)="submitMap()"></app-map>
+</ng-template>
